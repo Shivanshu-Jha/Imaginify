@@ -1,26 +1,282 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ========================= THEME TOKENS ========================= */
+@theme {
+  /* Core colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Purple shades */
+  --color-purple-100: #F4F7FE;
+  --color-purple-200: #BCB6FF;
+  --color-purple-400: #868CFF;
+  --color-purple-500: #7857FF;
+  --color-purple-600: #4318FF;
+
+  /* Dark shades */
+  --color-dark-400: #7986AC;
+  --color-dark-500: #606C80;
+  --color-dark-600: #2B3674;
+  --color-dark-700: #384262;
+
+  /* Background images */
+  --background-image-purple-gradient: url('/assets/images/gradient-bg.svg');
+  --background-image-banner: url('/assets/images/banner-bg.png');
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ========================= BASE STYLES ========================= */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.auth {
+  @apply flex-center min-h-screen w-full bg-purple-100;
+}
+
+.sidebar {
+  @apply hidden h-screen w-72 bg-white p-5 shadow-md shadow-purple-200/50 lg:flex;
+}
+
+.search {
+  @apply flex w-full rounded-[16px] border-2 border-purple-200/20 bg-white px-4 shadow-sm shadow-purple-200/15 md:max-w-96;
+}
+
+.sidebar-logo {
+  @apply flex items-center gap-2 md:py-2;
+}
+
+.sidebar-nav {
+  @apply h-full flex-col justify-between md:flex md:gap-4;
+}
+
+.sidebar-nav_elements {
+  @apply hidden w-full flex-col items-start gap-2 md:flex;
+}
+
+.sidebar-nav_element {
+  @apply flex-center p-16-semibold w-full whitespace-nowrap rounded-full bg-cover transition-all hover:bg-purple-100 hover:shadow-inner;
+}
+
+.sidebar-link {
+  @apply p-16-semibold flex size-full gap-4 p-4;
+}
+
+/* Navbar Component */
+.header {
+  @apply flex-between fixed h-16 w-full border-b-4 border-purple-100 bg-white p-5 lg:hidden;
+}
+
+.header-nav_elements {
+  @apply mt-8 flex w-full flex-col items-start gap-1;
+}
+
+.sheet-content button {
+  @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none;
+}
+
+/* ========================= CUSTOM UTILITIES =========================
+   In Tailwind v4, custom classes must be registered with @utility (not
+   just declared as plain classes inside @layer utilities) if they are
+   going to be referenced by @apply elsewhere or need variant support
+   (hover:, md:, etc). Plain classes in @layer utilities are not
+   guaranteed to resolve when another class tries to @apply them, which
+   throws "Cannot apply unknown utility class" at build time.
+======================================================================= */
+
+/* Alignment helpers */
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility flex-between {
+  @apply flex justify-between items-center;
+}
+
+/* Text effects */
+@utility gradient-text {
+  @apply bg-purple-gradient bg-cover bg-clip-text text-transparent;
+}
+
+/* Typography */
+@utility h1-semibold {
+  @apply text-[36px] font-semibold sm:text-[44px] leading-[120%] sm:leading-[56px];
+}
+
+@utility h2-bold {
+  @apply text-[30px] font-bold md:text-[36px] leading-[110%];
+}
+
+@utility h3-bold {
+  @apply font-bold text-[30px] leading-[140%];
+}
+
+@utility p-24-bold {
+  @apply font-bold text-[24px] leading-[120%];
+}
+
+@utility p-20-semibold {
+  @apply font-semibold text-[20px] leading-[140%];
+}
+
+@utility p-20-regular {
+  @apply font-normal text-[20px] leading-[140%];
+}
+
+@utility p-18-semibold {
+  @apply font-semibold text-[18px] leading-[140%];
+}
+
+@utility p-16-semibold {
+  @apply font-semibold text-[16px] leading-[140%];
+}
+
+@utility p-16-medium {
+  @apply font-medium text-[16px] leading-[140%];
+}
+
+@utility p-16-regular {
+  @apply font-normal text-[16px] leading-[140%];
+}
+
+@utility p-14-medium {
+  @apply font-medium text-[14px] leading-[120%];
+}
+
+@utility p-10-medium {
+  @apply font-medium text-[10px] leading-[140%];
+}
+
+/* Components */
+@utility button {
+  @apply py-4 px-6 flex-center gap-3 rounded-full p-16-semibold focus-visible:ring-offset-0 focus-visible:ring-transparent;
+}
+
+@utility dropdown-item {
+  @apply p-16-semibold text-dark-700 cursor-pointer transition-all px-4 py-3 hover:text-white hover:bg-purple-gradient hover:bg-cover;
+}
+
+@utility input-field {
+  @apply rounded-[16px] border-2 border-purple-200/20 shadow-sm text-dark-600 p-16-semibold h-[50px] md:h-[54px];
+}
+
+@utility search-field {
+  @apply border-0 bg-transparent text-dark-600 w-full placeholder:text-dark-400 h-[50px] p-16-medium;
+}
+
+@utility submit-button {
+  @apply bg-purple-gradient bg-cover rounded-full py-4 px-6 p-16-semibold h-[50px] w-full md:h-[54px];
+}
+
+@utility select-field {
+  @apply w-full border-2 border-purple-200/20 shadow-sm rounded-[16px] h-[50px] md:h-[54px] text-dark-600 p-16-semibold;
+}
+
+/* Layout helpers */
+@utility wrapper {
+  @apply max-w-5xl mx-auto px-5 md:px-10 w-full text-dark-400 p-16-regular;
+}
+
+@utility root {
+  @apply flex min-h-screen w-full flex-col bg-white lg:flex-row;
+}
+
+@utility root-container {
+  @apply mt-16 flex-1 overflow-auto py-8 lg:mt-0 lg:max-h-screen lg:py-10;
 }
