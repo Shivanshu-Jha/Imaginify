@@ -13,10 +13,13 @@ export async function POST(req: NextRequest) {
         if (eventType === "user.created") {
             const { email_addresses, image_url, first_name, last_name, username } = evt.data;
 
+            // Safely fallback to the email prefix if username is null/undefined
+            const fallbackUsername = username || email_addresses[0].email_address.split("@")[0];
+
             const user = {
                 clerkId: id!,
                 email: email_addresses[0].email_address,
-                username: username!,
+                username: fallbackUsername,
                 firstName: first_name ?? "",
                 lastName: last_name ?? "",
                 photo: image_url,
