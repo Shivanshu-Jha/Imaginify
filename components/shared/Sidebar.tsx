@@ -60,7 +60,7 @@ const Sidebar = () => {
                                     </li>
                                 )
                             })}
-                            <li className="flex-center cursor-pointer gap-2 p-4">
+                            <li className="flex-center cursor-pointer gap-2 p-4 scale-125">
                                 <UserButton showName />
                             </li>
                         </ul>
@@ -68,7 +68,7 @@ const Sidebar = () => {
 
                     {/* when signed out */}
                     <Show when="signed-out">
-                        <Button className="button bg-purple-gradient bg-cover">
+                        <Button className="button bg-purple-gradient bg-cover cursor-pointer">
                             <Link href="/sign-in">LogIn</Link>
                         </Button>
                     </Show>

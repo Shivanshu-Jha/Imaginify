@@ -1,8 +1,39 @@
-import React from 'react'
+import Header from '@/components/shared/Header'
+import TransformationForm from '@/components/shared/TransformationForm';
+import { transformationTypes } from "@/constants"
+import { getUserById } from '@/lib/actions/user.actions';
+import { RedirectToSignIn } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 
-const AddTransformationTypePage = () => {
+const AddTransformationTypePage = async ({
+  params
+}: {
+  params: Promise<{ type: string }>
+}) => {
+  const { type } = await params;
+  const { userId } = await auth();
+  const transformation = transformationTypes[type as keyof typeof transformationTypes];
+
+  if (!userId) redirect('/sign-in')
+  const user = await getUserById(userId);
+
   return (
-    <div>AddTransformationTypePage</div>
+    <>
+      <Header
+        title={transformation?.title || "Transformation"}
+        subtitle={transformation?.subTitle || "Transformation subtitle"}
+      />
+
+      <section className="mt-10">
+        <TransformationForm
+          action='Add'
+          userId={user._id}
+          type={transformation.type as TransformationTypeKey}
+          creditBalance={user.creditBalance}
+        />
+      </section>
+    </>
   )
 }
 
