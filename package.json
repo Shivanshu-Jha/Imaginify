@@ -19,6 +19,7 @@
     "mongodb": "^7.6.0",
     "mongoose": "^9.10.0",
     "next": "16.3.4",
+    "next-cloudinary": "^6.19.2",
     "qs": "^6.16.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
