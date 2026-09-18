@@ -91,7 +91,7 @@ export async function deleteImage(
     }
 }
 
-// Get Image
+// Get Image by Id
 export async function getImageById(
     imageId: string
 ) {
@@ -110,3 +110,6 @@ export async function getImageById(
         handleError(error)
     }
 }
+
+// Get all Image
+ 

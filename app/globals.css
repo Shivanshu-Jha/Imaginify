@@ -192,6 +192,71 @@
   @apply flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] border border-dashed bg-purple-100/20 shadow-inner;
 }
 
+
+.home {
+  @apply sm:flex-center hidden h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 shadow-inner;
+}
+
+.home-heading {
+  @apply h1-semibold max-w-[500px] flex-wrap text-center text-white shadow-sm;
+}
+
+.credits-list {
+  @apply mt-11 grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-9 xl:grid-cols-3;
+}
+
+.credits-item {
+  @apply w-full rounded-[16px] border-2 border-purple-200/20 bg-white p-8 shadow-xl shadow-purple-200/20 lg:max-w-none;
+}
+
+.credits-btn {
+  @apply w-full rounded-full bg-purple-100 bg-cover text-purple-500 hover:text-purple-500;
+}
+
+
+.profile {
+  @apply mt-5 flex flex-col gap-5 sm:flex-row md:mt-8 md:gap-10;
+}
+
+.profile-balance {
+  @apply w-full rounded-[16px] border-2 border-purple-200/20 bg-white p-5 shadow-lg shadow-purple-200/10 md:px-6 md:py-8;
+}
+
+.profile-image-manipulation {
+  @apply w-full rounded-[16px] border-2 border-purple-200/20 bg-white p-5 shadow-lg shadow-purple-200/10 md:px-6 md:py-8;
+}
+
+/* Transformation Details */
+.transformation-grid {
+  @apply grid h-fit min-h-[200px] grid-cols-1 gap-5 py-8 md:grid-cols-2;
+}
+
+.transformation-original_image {
+  @apply h-fit min-h-72 w-full rounded-[10px] border border-dashed bg-purple-100/20 object-cover p-2;
+}
+
+/* Collection Component */
+.collection-heading {
+  @apply md:flex-between mb-6 flex flex-col gap-5 md:flex-row;
+}
+
+.collection-list {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3;
+}
+
+.collection-empty {
+  @apply flex-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20;
+}
+
+
+
+.collection-card {
+  @apply flex flex-1 cursor-pointer flex-col gap-5 rounded-[16px] border-2 border-purple-200/15 bg-white p-4 shadow-xl shadow-purple-200/10 transition-all hover:shadow-purple-200/20;
+}
+
+
+
+
 /* ========================= CUSTOM UTILITIES =========================
    In Tailwind v4, custom classes must be registered with @utility (not
    just declared as plain classes inside @layer utilities) if they are
