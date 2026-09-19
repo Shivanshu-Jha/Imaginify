@@ -4,40 +4,10 @@ import * as z from "zod"
 import { useEffect, useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroupTextarea,
-} from "@/components/ui/input-group"
-import {
-    Field,
-    FieldDescription,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-} from "@/components/ui/field"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import { Form } from "@/components/ui/form"
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
     SelectTrigger,
     SelectValue,
@@ -191,7 +161,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                     [fieldName === 'prompt' ? 'prompt' : 'to']: value
                 }
             }))
-        }, 1000)
+        }, 1000)();
 
         return onChangeField(value)
     }
@@ -272,7 +242,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                                 type === 'remove' ? 'Object to remove' : 'Object to recolor'
                             }
                             className="w-full"
-                            render={(({ field }) => (
+                            render={({ field }) => (
                                 <Input
                                     value={field.value}
                                     className="input-field"
@@ -283,7 +253,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                                         field.onChange
                                     )}
                                 />
-                            ))}
+                            )}
                         />
 
                         {type === 'recolor' && (

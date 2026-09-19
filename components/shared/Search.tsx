@@ -33,7 +33,8 @@ export const Search = () => {
         }, 300);
 
         return () => clearTimeout(delayDebounceFn);
-    }, [router, searchParams, query]);
+
+    }, [query]);
 
     return (
         <div className="search">
