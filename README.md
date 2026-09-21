@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Imaginify ✨  
+An **AI-powered SaaS image editing platform** built with **Next.js 16+**, **MongoDB**, **Clerk**, **Cloudinary AI**, **Shadcn UI**, **Stripe**, **Zod**, and **TypeScript**.  
 
-## Getting Started
+Imaginify lets users restore, recolor, remove, and transform images using cloudinary ai — with a **credit-based payment system** powered by Stripe.
 
-First, run the development server:
+Check it out here: [imaginify-opal-kappa](https://imaginify-opal-kappa.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
+- **Image Restore** – bring old or damaged photos back to life  
+- **Generative Fill** – extend or fill missing parts of an image  
+- **Object Remove** – erase unwanted objects seamlessly  
+- **Object Recolor** – change colors of specific elements  
+- **Background Remove** – isolate subjects with one click  
+- **Buy Credits** – Stripe-powered checkout for credit purchases  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Tech Stack
+| Technology | Usage |
+|------------|-------|
+| Next.js 16+ | App framework with App Router |
+| TypeScript | Strong typing & safety |
+| MongoDB | Database for users, transactions, images |
+| Clerk | Authentication & user management |
+| Cloudinary AI | Image transformations |
+| Shadcn UI | Modern UI components |
+| Stripe | Payments & credit system |
+| Zod | Schema validation |
+| Tailwind v4 | Styling & responsive design |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Installation & Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/imaginify.git
+   cd imaginify
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install Dependency**
+    ```bash
+    npm install
 
-## Deploy on Vercel
+3. **Set Up Environment Variables**
+   ```bash
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+    CLERK_SECRET_KEY=your_clerk_secret_key
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+   CLOUDINARY_API_KEY=your_cloudinary_api_key
+    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+    STRIPE_SECRET_KEY=your_stripe_secret_key
+    STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+    MONGODB_URL=your_mongodb_connection_string
+    NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the dev server**
+     ```bash
+     npm run dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💳 Credit System
+   - Users sign in via Clerk
+   - Credits are purchased via Stripe Checkout
+   - Each AI transformation deducts credits from the user’s balance
+
+## 📸 Screenshots
+### Dashboard with credit balance
+![Profile](public/screenshots/profile-imaginify.jpg)
+
+### Image editor with AI tools
+![Image Editor](public/screenshots/imaginify.jpg)
+
+### Stripe checkout flow
+![Stripe Checkout](public/screenshots/payment-stripe.jpg)
+
